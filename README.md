@@ -1,4 +1,4 @@
-# ZhangJInHui0627 / C
+# ZhangJinHui0627 / C/C++
 
 这是一个用于记录 C 语言学习、数据结构与算法实现的个人代码仓库。
 
