@@ -19,11 +19,79 @@ void modifyStu();     //修改
 void deleteStu();     //删除
 void save_data();     //保存数据
 void load_data();     //加载数据
-int menu();           //菜单
+void menu();           //菜单
 int count=0;          //当前实际记录条数
 Student dormArr[MAX_NUM]; // 结构体数组充当内存数据库
 
-//功能3:修改档案
+// 主菜单界面
+void menu()
+{
+    printf("====================学生住宿档案管理系统====================\n");
+    printf("1. 新增学生住宿档案\n");
+    printf("2. 查询学生住宿档案\n");
+    printf("3. 修改学生住宿档案\n");
+    printf("4. 删除学生住宿档案\n");
+    printf("0. 退出系统并保存数据\n");
+    printf("============================================================\n");
+}
+
+//录入新档案
+void addInfo()
+{
+    if(count>=MAX_NUM)
+    {
+        printf("档案数量已达上限，无法继续添加！\n");
+        return;
+    }
+    Student temp;
+    printf("=====录入学生住宿信息=====\n");
+    printf("学号：");
+    scanf("%19s", temp.id);
+    printf("姓名：");
+    scanf("%19s", temp.name);
+    printf("班级：");
+    scanf("%19s", temp.classname);
+    printf("宿舍号：");
+    scanf("%19s", temp.dormno);
+    printf("入住时间：");
+    scanf("%19s", temp.date);
+    printf("手机号码：");
+    scanf("%14s", temp.phone);
+
+    dormArr[count]=temp;
+    count++;
+    printf("新增档案成功！\n");
+}
+
+//按学号/姓名查询
+void searchInfo()
+{
+    if (count == 0)
+    {
+        printf("暂无任何住宿档案！\n");
+        return;
+    }
+    char key[20];
+    int flag=0;//标记是否找到
+    printf("请输入要查询的学号或姓名：");
+    scanf("%19s", key);
+
+    printf("\n%-12s%-8s%-12s%-8s%-12s%-12s\n","学号","姓名","班级","宿舍号","入住时间","手机号");
+    for (int i=0;i<count;i++)
+    {
+        if (strcmp(dormArr[i].id,key)==0||strcmp(dormArr[i].name,key)==0)
+        {
+            printf("%-12s%-8s%-12s%-8s%-12s%-12s\n",dormArr[i].id, dormArr[i].name, dormArr[i].classname,dormArr[i].dormno, dormArr[i].date, dormArr[i].phone);
+            flag = 1;
+        }
+    }
+    if (!flag)
+    {
+        printf("未查询到匹配的住宿档案\n");
+    }
+}
+
+//修改档案
 void modifyStu()
 {
     if(count==0)
@@ -35,7 +103,7 @@ void modifyStu()
     char id[20];
     int pos=-1;
     printf("请输入需要修改的学生学号：");
-    gets(id);
+    scanf("%19s", id);
 
     // 查找下标
     for(int i=0;i<count;i++)
@@ -55,19 +123,19 @@ void modifyStu()
     //重新录入新信息覆盖
     printf("=====重新填写新信息=====\n");
     printf("新姓名：");
-    gets(dormArr[pos].name);
+    scanf("%19s", dormArr[pos].name);
     printf("新班级：");
-    gets(dormArr[pos].classname);
+    scanf("%19s", dormArr[pos].classname);
     printf("新宿舍号：");
-    gets(dormArr[pos].dormno);
+    scanf("%19s", dormArr[pos].dormno);
     printf("新入住时间：");
-    gets(dormArr[pos].date);
+    scanf("%19s", dormArr[pos].date);
     printf("新手机号：");
-    gets(dormArr[pos].phone);
+    scanf("%14s", dormArr[pos].phone);
     printf("档案修改完成！\n");
 }
 
-//功能4：删除档案（数据前移覆盖）
+//删除档案（数据前移覆盖）
 void deleteInfo()
 {
     if (count==0)
@@ -78,7 +146,7 @@ void deleteInfo()
     char id[20];
     int pos=-1;
     printf("请输入要删除的学生学号：");
-    gets(id);
+    scanf("%19s", id);
 
     for(int i=0;i<count;i++)
     {
@@ -101,4 +169,32 @@ void deleteInfo()
     }
     count--;//总条数减一
     printf("档案删除成功！\n");
+}
+
+int main()
+{
+    load_data();
+    int choice;
+    while(1)
+    {
+        menu();
+        printf("请输入功能序号:");
+        scanf("%d",&choice);
+        getchar();
+        
+        switch(choice)
+        {
+            case 1:input_student();break;
+            case 2:query_student();break;
+            case 3:modifyStu();break;
+            case 4:deleteStu();break;
+            case 0:
+                save_data();
+                printf("感谢使用，再见！\n");
+                return 0;
+            default:
+                printf("输入错误，请重新选择！\n");
+                break;
+        }
+    }
 }
