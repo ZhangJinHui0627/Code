@@ -171,26 +171,68 @@ void input_student()
     }
     Student s;
     printf("=====录入学生住宿信息=====\n");
-    printf("学号：");
-    scanf("%s", s.id);
-    getchar();           //吸收回车符
-    printf("姓名：");
-    scanf("%s", s.name);
-    getchar();
+
+    //学号：强制8位数字
+    while (1)
+    {
+        printf("学号（8位数字）：");
+        scanf("%s", s.id);
+        getchar();
+        if (strlen(s.id) == 8 && is_all_digit(s.id))
+        {
+            break;
+        }
+        else
+        {
+            printf("请输入正确的学号（8位数字）！\n");
+        }
+    }
+
+    //姓名：强制两个以上中文字符
+    while(1)
+    {
+        printf("姓名（至少两个汉字）：");
+        scanf("%s",s.name);
+        getchar();
+        if (count_Chinese(s.name)>=2)
+        {
+            break;
+        }
+        else
+        {
+            printf("请输入正确的姓名（至少包含两个中文字符）！\n");
+        }
+    }
+
     printf("班级：");
     scanf("%s", s.classname);
     getchar();
+
     printf("宿舍号：");
     scanf("%s", s.dormno);
     getchar();
+
     printf("入住时间：");
     scanf("%s", s.date);
     getchar();
-    printf("手机号码：");
-    scanf("%s", s.phone);
-    getchar();
 
-    dormArr[count]=s;
+    //手机号：强制11位数字
+    while(1)
+    {
+        printf("手机号码（11位数字）：");
+        scanf("%s", s.phone);
+        getchar();
+        if (strlen(s.phone) == 11 && is_all_digit(s.phone))
+        {
+            break;
+        }
+        else
+        {
+            printf("请输入正确的手机号码（11位数字）！\n");
+        }
+    }
+
+    dormArr[count] = s;
     count++;
     printf("新增档案成功！\n");
 }
