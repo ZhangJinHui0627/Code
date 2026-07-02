@@ -104,7 +104,7 @@ void input_student()
 //按学号/姓名查询
 void query_student()
 {
-    if (count==0)
+    if(count==0)
     {
         printf("暂无任何住宿档案！\n");
         return;
@@ -112,18 +112,23 @@ void query_student()
     char key[20];
     int flag=0;//标记是否找到
     printf("请输入要查询的学号或姓名：");
-    scanf("%19s", key);
+    scanf("%19s",key);
 
-    printf("\n%-12s%-8s%-12s%-8s%-12s%-12s\n","学号","姓名","班级","宿舍号","入住时间","手机号");
-    for (int i=0;i<count;i++)
+    for(int i=0;i<count;i++)
     {
-        if (strcmp(dormArr[i].id,key)==0||strcmp(dormArr[i].name,key)==0)
+        if(strcmp(dormArr[i].id,key)==0||strcmp(dormArr[i].name,key)==0)
         {
-            printf("%-12s%-8s%-12s%-8s%-12s%-12s\n",dormArr[i].id, dormArr[i].name, dormArr[i].classname,dormArr[i].dormno, dormArr[i].date, dormArr[i].phone);
+            printf("学号: %s\n",dormArr[i].id);
+            printf("姓名: %s\n",dormArr[i].name);
+            printf("班级: %s\n",dormArr[i].classname);
+            printf("宿舍号: %s\n",dormArr[i].dormno);
+            printf("入住时间: %s\n",dormArr[i].date);
+            printf("手机号: %s\n",dormArr[i].phone);
+            printf("\n");//多条记录之间空行分隔
             flag=1;
         }
     }
-    if (!flag)
+    if(!flag)
     {
         printf("未查询到匹配的住宿档案\n");
     }
