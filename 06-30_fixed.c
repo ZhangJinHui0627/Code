@@ -78,22 +78,22 @@ void input_student()
     Student s;
     printf("=====录入学生住宿信息=====\n");
     printf("学号：");
-    scanf("%s", s.id);
+    scanf("%s",s.id);
     getchar();           //吸收回车符
     printf("姓名：");
-    scanf("%s", s.name);
+    scanf("%s",s.name);
     getchar();
     printf("班级：");
-    scanf("%s", s.classname);
+    scanf("%s",s.classname);
     getchar();
     printf("宿舍号：");
-    scanf("%s", s.dormno);
+    scanf("%s",s.dormno);
     getchar();
     printf("入住时间：");
-    scanf("%s", s.date);
+    scanf("%s",s.date);
     getchar();
     printf("手机号码：");
-    scanf("%s", s.phone);
+    scanf("%s",s.phone);
     getchar();
 
     dormArr[count]=s;
