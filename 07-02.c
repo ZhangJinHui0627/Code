@@ -12,20 +12,20 @@ typedef struct
     char date[20];      //入住时间
 }Student;
 
-Student dormArr[MAX]; // 结构体数组充当内存数据库
-int count=0;          //当前实际记录条数
+Student dormArr[MAX];   //结构体数组充当内存数据库
+int count=0;            //当前实际记录条数
 FILE *fp;
 
 //函数声明
-void menu_admin();    // 管理员菜单
-void menu_user();       // 普通用户菜单
-int login();                   // 登录，返回1=管理员，2=普通用户
-void input_student();  //录入
-void query_student();  //查询
-void modifyStu();        //修改
-void deleteStu();         //删除
-void save_data();        //保存数据
-void load_data();        //加载数据
+void menu_admin();      //管理员菜单
+void menu_user();       //普通用户菜单
+int login();            //登录，返回1=管理员，2=普通用户
+void input_student();   //录入
+void query_student();   //查询
+void modifyStu();       //修改
+void deleteStu();       //删除
+void save_data();       //保存数据
+void load_data();       //加载数据
 
 void menu_admin()
 {
@@ -115,6 +115,51 @@ void save_data()
     fclose(fp);
 }
 
+//判断字符是否为GBK汉字（高字节0x81-0xFE，低字节0x40-0xFE）
+int is_Chinese_char(unsigned char high, unsigned char low)
+{
+    return (high>=0x81&&high<=0xFE)&&(low>=0x40&&low<=0xFE);
+}
+
+//统计字符串中的中文字符个数（GBK编码，每汉字占2字节）
+int count_Chinese(const char *str)
+{
+    int count=0;
+    while(*str)
+    {
+        if(*str<0)
+        {   
+            //中文字符高位字节
+            if(is_Chinese_char((unsigned char)str[0], (unsigned char)str[1]))
+            {
+                count++;
+                str +=2;
+            }
+            else
+            {
+                str++;//非汉字跳过
+            }
+        }
+        else
+        {
+            str++;
+        }
+    }
+    return count;
+}
+
+//判断字符串是否全为数字
+int is_all_digit(const char *str)
+{
+    for (int i=0;str[i]!='\0';i++)
+    {
+        if (str[i]<'0'||str[i]>'9')
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
 
 //录入新档案
 void input_student()
