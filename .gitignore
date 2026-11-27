@@ -1,0 +1,20 @@
+# 编译产物与调试文件
+*.exe
+*.o
+*.obj
+*.pdb
+*.ilk
+*.class
+build/
+bin/
+out/
+
+# IDE 与编辑器配置
+.idea/
+.vscode/
+
+# 历史遗留与系统残留
+CCode/C_CPP/
+.DS_Store
+Thumbs.db
+desktop.ini

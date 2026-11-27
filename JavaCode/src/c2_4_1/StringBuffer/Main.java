@@ -55,7 +55,6 @@ public class Main
         StringBuffer sb10 = new StringBuffer("Hello");
         int len = sb10.length();
         System.out.println(len); // 输出: 5
-    //*66-67简写输出:
         System.out.println(sb10.length());
     }
 }

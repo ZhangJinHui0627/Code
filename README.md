@@ -1,14 +1,16 @@
 # Code
 
-个人编程练习与课程代码归档仓库：C 语言、C++ 算法与数据结构、Java 面向对象课程练习。
+个人编程练习与课程代码归档仓库：C 语言、C++ 算法与数据结构、Java 面向对象与常用 API 课程练习。
 
 ## 目录结构
 
 ```
 Code/
-├── CCode/      C 语言练习与数据结构实现（按日期命名，19 个文件）
-├── CPPCode/    C++ 算法与数据结构练习（19 个文件）
-├── JavaCode/   Java 课程练习（IntelliJ IDEA 工程 demo1）
+├── CCode/          C 语言练习与数据结构实现（按日期命名，19 个文件）
+├── CPPCode/        C++ 算法与数据结构练习（26 个文件）
+├── JavaCode/       Java 课程练习（IntelliJ IDEA 工程 JavaCode.iml，50 个源码文件）
+├── .gitattributes
+├── .gitignore
 └── README.md
 ```
 
@@ -63,10 +65,17 @@ C++ 算法与数据结构练习，多数文件开头标注了练习日期。
 | chicken.cpp | 鸡兔同笼 |
 | TheChickenAndRabbitCageProblem.cpp | 鸡兔同笼（脚数约束，求最大/最小只数） |
 | ABC.cpp | 组合计数（1/2/5 元凑数） |
+| ActiveManage.cpp | 活动安排问题（贪心） |
+| PayMoney.cpp | 零钱找零问题（贪心） |
+| KnapSack.cpp | 部分背包问题（贪心） |
+| ZeroOneKnapSack.cpp | 0-1 背包问题（动态规划） |
+| TSP.cpp | 旅行商问题（贪心近邻路径） |
+| ColoorGraph.cpp | 图着色问题（贪心着色） |
+| CommonOrder.cpp | 最长公共子序列（动态规划） |
 
 ## JavaCode
 
-`demo1` 为 IntelliJ IDEA 工程（`demo1.iml`），源码位于 `demo1/src`，以 `c<章>_<节>_<序号>` 命名对应课程章节的课堂练习。
+`JavaCode` 为 IntelliJ IDEA 工程（`JavaCode.iml`），源码位于 `JavaCode/src`，以 `c<章>_<节>_<序号>` 命名对应课程章节的课堂练习。
 
 | 包 | 内容 |
 | :--- | :--- |
@@ -76,7 +85,11 @@ C++ 算法与数据结构练习，多数文件开头标注了练习日期。
 | `c2_2_1`、`c2_2_2` | 继承与多态：父类 Animal 与子类方法重写、父类引用指向子类对象 |
 | `c2_3_1`、`c2_3_2` | 抽象类与接口：abstract 方法、接口实现、default 方法 |
 | `c2_3_4`、`c2_3_5` | 内部类：成员内部类、静态内部类、匿名内部类与 Lambda 表达式 |
-| `c2_4_1/String`、`c2_4_1/StringBuffer` | 字符串 API：String 常用方法、StringBuffer/StringBuilder 的追加/插入/删除/替换/反转与容量 |
+| `c2_4_1.String`、`c2_4_1.StringBuffer`、`c2_4_1.StringBuilder`、`c2_4_1.lianxi` | 字符串 API：String、StringBuffer/StringBuilder 的追加/插入/删除/替换/反转与容量练习 |
+| `c2_4_1.Math` | Math 常用数学计算方法（绝对值、最值、开方、乘方、取整、随机数与常量） |
+| `c2_4_3` | Java 日期与时间 API：`LocalDate`、`LocalTime`、`Period`、`Duration` |
+| `c3_1` | 异常处理：`throw` 主动抛出异常与 `throws` 声明受检异常 |
+| `c3_2.c3_2_3` | 集合框架：`ArrayList` 基本操作与 `Iterator` 迭代器遍历 |
 
 ## 编译与运行
 
@@ -93,14 +106,15 @@ g++ CPPCode/InsertSort.cpp -o insert_sort
 **Java（JDK 8+）**
 
 ```bash
-cd JavaCode/demo1/src
+cd JavaCode/src
 javac c2_1_2/c1/Main.java
 java c2_1_2.c1.Main
 ```
 
-或直接用 IntelliJ IDEA 打开 `JavaCode/demo1` 工程运行。
+或直接用 IntelliJ IDEA 打开 `JavaCode` 目录运行。
 
 ## 约定
 
-- 构建产物（`*.exe`、`*.o`、`*.class`、`out/`、`bin/`、`build/`）不入库。
+- 构建产物（`*.exe`、`*.o`、`*.obj`、`*.pdb`、`*.ilk`、`*.class`、`out/`、`bin/`、`build/`）与本地 IDE 配置（`.idea/`、`.vscode/`）不入库。
+- 文本文件统一使用 UTF-8 编码与 LF 换行（通过 `.gitattributes` 约束）。
 - 早期 C 代码曾维护在独立仓库 `ZhangJinHui0627/C`，已整体迁入本仓库的 `CCode/` 目录，历史提交仍保留在旧仓库。
